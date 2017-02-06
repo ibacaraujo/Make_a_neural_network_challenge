@@ -16,18 +16,12 @@ class NeuralNetwork():
 		for iteration in xrange(number_of_training_iterations):
 			inputs = training_set_inputs # 4 x 3
 			hidden, output = self.think(inputs)
-			#hidden = self.think(inputs, self.synaptic_weigts_0) # 4 x 4 
-			#output = self.think(hidden, self.synaptic_weights_1) # 4 x 1
 			output_error = training_set_outputs - output
 			output_adjustment = np.dot(hidden.T, output_error * self.__sigmoid_derivative(output)) # 4 x 1
 			hidden_error = np.dot(output_adjustment, self.synaptic_weights_1.T) # 4 x 4
 			hidden_adjustment = np.dot(inputs.T, hidden_error * self.__sigmoid_derivative(hidden)) # 3 x 4
 			self.synaptic_weights_1 += output_adjustment
 			self.synaptic_weights_0 += hidden_adjustment
-			#output = self.think(training_set_inputs)
-			#error = training_set_outputs - output
-			#adjustment = np.dot(training_set_inputs.T, error * self.__sigmoid_derivative(output))
-			#self.synaptic_weights += adjustment
 			
 	def think(self, inputs):
 		hidden = self.__sigmoid(np.dot(inputs, self.synaptic_weights_0))
