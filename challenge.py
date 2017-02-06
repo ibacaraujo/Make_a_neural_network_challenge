@@ -1,4 +1,3 @@
-#! C:\Users\iago_\AppData\Local\Continuum\Anaconda2\python.exe
 import numpy as np
 
 class NeuralNetwork():
